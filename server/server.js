@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
 const { NotFoundError } = require("./utils/errors");
-const authRoute = require("./routes/auth");
+const authRoutes = require("./routes/auth");
 const { PORT } = require("./config");
 
 const app = express();
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(morgan("tiny"));
 
 //! Routes
-app.use("/", authRoute); //! this is a middleware too
+app.use("/auth", authRoutes); //! this is a middleware too
 
 //! Error handling
 //* This will handle all 404 Errors that were not matched by a route
