@@ -8,7 +8,7 @@ db.connect((err) => {
 	if (err) {
 		console.error("connection error".red, err.stack);
 	} else {
-		console.log("Successfully connected to postgres db! 😎".green);
+		console.log("😎 Successfully connected to postgres db!".green);
 	}
 });
 
