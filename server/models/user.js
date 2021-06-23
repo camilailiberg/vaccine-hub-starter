@@ -1,5 +1,7 @@
+const bcrypt = require("bcrypt");
 const db = require("../db");
 const { BadRequestError, UnauthorizedError } = require("../utils/errors");
+const { BCRYPT_WORK_FACTOR } = require("../config");
 
 class User {
 	static async login(credentials) {
@@ -42,7 +44,10 @@ class User {
 			);
 		}
 		// take the users password, and hash it
-		//
+		const hashedPassword = await bcrypt.hash(
+			credentials.password,
+			BCRYPT_WORK_FACTOR
+		);
 		// take the user's email and lowercase it
 		const lowercaseEmail = credentials.email.toLowerCase();
 		// create a new user in the db with all their info
@@ -52,7 +57,7 @@ class User {
 			[
 				credentials.credentials.first_name,
 				credentials.last_name,
-				credentials.password,
+				hashedPassword,
 				lowercaseEmail,
 			]
 		);
