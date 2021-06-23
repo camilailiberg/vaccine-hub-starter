@@ -3,6 +3,7 @@ const cors = require("cors");
 const morgan = require("morgan");
 const { NotFoundError } = require("./utils/errors");
 const authRoute = require("./routes/auth");
+const { PORT } = require("./config");
 
 const app = express();
 
@@ -29,7 +30,7 @@ app.use((error, req, res, next) => {
 	});
 });
 
-const PORT = process.env.PORT || 3001;
+// const PORT = process.env.PORT || 3001; //* I don't need this anymore because I am using the PORT from config.js
 
 app.listen(PORT, () => {
 	console.log(`🚀 Server running http://localhost:${PORT}`);
