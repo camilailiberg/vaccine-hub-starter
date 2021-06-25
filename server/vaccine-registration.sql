@@ -3,6 +3,6 @@
 
 DROP DATABASE vaccine_registration;
 CREATE DATABASE vaccine_registration;
-\connect vaccine_registration;
+\c vaccine_registration;
 
 \i vaccine_registration-schema.sql
